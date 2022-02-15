@@ -1,0 +1,230 @@
+/* VARIABLES */
+/* FONT */
+@font-face {
+  font-family: "Ninja Naruto";
+  src: url("../fonts/Njnaruto/njnaruto.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Noto";
+  src: url("../fonts/Noto/NotoSansJP-Medium.otf") format("otf");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Thin.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Bold";
+  src: url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Medium";
+  src: url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+}
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: top;
+}
+
+/* GLOBAL */
+html {
+  background-color: #210002;
+  color: #FFAF00;
+  font-family: "Roboto";
+  font-weight: 300;
+  font-style: normal;
+  text-align: center;
+  font-size: 22.5px;
+}
+html a {
+  text-decoration: none;
+  color: inherit;
+}
+html a:hover {
+  color: #973700;
+}
+html body {
+  position: relative;
+}
+html h1, html h2, html h3, html h4 {
+  text-transform: uppercase;
+  color: inherit;
+}
+html h1 {
+  font-family: "Roboto Bold";
+  font-size: 60px;
+}
+html h2 {
+  color: #973700;
+  font-family: "Roboto Medium";
+}
+
+/* HEADER */
+header {
+  display: block;
+  height: 1000px;
+  position: relative;
+  z-index: 10;
+}
+header .layer {
+  background-position: bottom center;
+  background-size: auto 1038px;
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 1000px;
+  position: absolute;
+}
+header .layer.parallax {
+  position: fixed;
+}
+header .layer#layer-0 {
+  background-image: url("../images/parallax/parallax0.png");
+  background-color: #FFAF00;
+}
+header .layer#layer-1 {
+  background-image: url("../images/parallax/parallax1.png");
+}
+header .layer#layer-2 {
+  background-image: url("../images/parallax/parallax2.png");
+}
+header .layer#layer-3 {
+  background-image: url("../images/parallax/parallax3.png");
+}
+header .layer#layer-4 {
+  background-image: url("../images/parallax/parallax4.png");
+}
+header .layer#layer-5 {
+  background-image: url("../images/parallax/parallax5.png");
+}
+header .layer#layer-6 {
+  background-image: url("../images/parallax/parallax6.png");
+}
+header .layer#layer-7 {
+  background-image: url("../images/parallax/parallax7.png");
+}
+header .layer#layer-8 {
+  background-image: url("../images/parallax/parallax8.png");
+}
+header .layer#layer-scrim {
+  background-color: #FFAF00;
+  opacity: 0;
+}
+
+@media only screen and (max-device-width: 450px) {
+  /* PARALLAX */
+  header {
+    height: 550px;
+  }
+  header .layer {
+    position: absolute;
+    background-size: auto 600px;
+  }
+}
+/* NAVBAR */
+.navbar {
+  width: calc(100% - 120px);
+  background-color: #210002;
+  top: 0;
+  padding: 30px 60px;
+  z-index: 100;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar.sticky {
+  position: fixed;
+}
+.navbar .logo {
+  display: inline-block;
+  font-family: "Ninja Naruto";
+  width: 240px;
+  vertical-align: middle;
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+}
+.navbar .nav-links .nav-item a {
+  display: inline-block;
+  padding: 15px 30px;
+  text-decoration: none;
+  color: #FFAF00;
+}
+.navbar .nav-links .nav-item a img {
+  height: 30px;
+  fill: #FFAF00;
+}
+
+/* MAIN */
+main {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+  width: calc(100% - 240px);
+  height: 400px;
+  padding: 60px 120px;
+  background-color: #210002;
+  z-index: 100;
+}
+main.sticky {
+  padding: 60px;
+}
+main .description {
+  display: block;
+  width: 50%;
+  text-align: left;
+}
+main .description h1, main .description p, main .description a {
+  padding-bottom: 30px;
+}
+main .description img {
+  width: 45px;
+  height: 45px;
+  padding-left: 30px;
+}
+main .list {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+main .list .nft-group {
+  display: block;
+  width: 180px;
+}
+main .list .nft-group.not-align {
+  margin-top: 30px;
+}
+main .list .nft-group .nft {
+  width: 180px;
+  height: 180px;
+  border-radius: 30px;
+  margin-bottom: 30px;
+}
+
+/* FOOTER */
+footer {
+  display: block;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  height: 150px;
+  z-index: 1000;
+  padding-top: 60px;
+  background-color: #210002;
+}
+footer .citation {
+  font-family: "Noto";
+  font-size: 26px;
+  letter-spacing: 4px;
+}
+footer .logo {
+  padding-top: 30px;
+  font-family: "Ninja Naruto";
+  color: #973700;
+}
+
+/*# sourceMappingURL=shinobi.css.map */
