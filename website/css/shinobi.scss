@@ -2,7 +2,8 @@
 $background-color: #210002;
 $primary-color: #FFAF00;
 $secondary-color: #973700;
-$size: 30px;
+$width-size: 1.6vw;
+$font-size:1rem;
 
 /* FONT */
 @font-face {
@@ -49,7 +50,7 @@ html {
 	font-weight: 300;
 	font-style: normal;
 	text-align: center;
-	font-size: $size*0.75;
+	font-size: $width-size*0.75;
 
 	a {
 		text-decoration: none;
@@ -71,7 +72,7 @@ html {
 	
 	h1 {
 		font-family: 'Roboto Bold';
-		font-size: $size*2;
+		font-size: $width-size*2;
 	}
 
 	h2 {
@@ -84,17 +85,17 @@ html {
 
 header {
 	display: block;
-	height: 1000px;
+	height: 100vh;
 	position: relative;
 	z-index: 10;
 
 
 	.layer {
 		background-position: bottom center;
-		background-size: auto 1038px;
+		background-size: auto 105vh;
 		background-repeat: repeat-x;
 		width: 100%;
-		height: 1000px;
+		height: 100vh;
 		position: absolute;
 
 		&.parallax {
@@ -146,26 +147,13 @@ header {
 
 }
 
-@media only screen and (max-device-width: 450px) {
-	/* PARALLAX */
-
-	header {
-		height: 550px;
-
-		.layer {
-			position: absolute;
-			background-size: auto 600px;
-		}
-	}
-}
-
 /* NAVBAR */
 
 .navbar {
-	width: calc(100% - $size*4);
+	width: calc(100% - $width-size*4);
 	background-color: $background-color;
 	top: 0;
-	padding: $size $size*2;
+	padding: $width-size $width-size*2;
 	z-index: 100;
 	position: relative;
 	display: flex;
@@ -179,22 +167,24 @@ header {
 	.logo {
 		display: inline-block;
 		font-family: 'Ninja Naruto';
-		width: 240px;
+		width: 20vw;
+		font-size: 2.5vw;
 		vertical-align: middle;
 	}
 
 	.nav-links {
 		list-style: none;
 		display: flex;
+		align-items: center;
 
 		.nav-item a {
 			display: inline-block;
-			padding: calc($size / 2) $size;
+			padding: calc($width-size / 2) $width-size;
 			text-decoration: none;
 			color: $primary-color;
 
 			img {
-				height: $size;
+				height: $width-size;
 				fill: $primary-color
 			}
 		}
@@ -208,14 +198,14 @@ main {
 	justify-content: space-between;
 	position: relative;
 	top: 0;
-	width: calc(100% - $size*8);
-	height: 400px;
-	padding: $size*2 $size*4;
+	width: calc(100% - $width-size*8);
+	height: 25vw;
+	padding: $width-size*2 $width-size*4;
 	background-color: $background-color;
 	z-index: 100;
 
 	&.sticky {
-		padding: $size*2;
+		padding: $width-size*2;
 	}
 
 	.description {
@@ -224,13 +214,13 @@ main {
 		text-align: left;
 
 		h1, p, a {
-			padding-bottom: $size;
+			padding-bottom: $width-size;
 		}
 
 		img {
-			width: $size*1.5;
-			height: $size*1.5;
-			padding-left: $size;
+			width: $width-size*1.5;
+			height: $width-size*1.5;
+			padding-left: $width-size;
 		}
 	}
 
@@ -241,21 +231,27 @@ main {
 
 		.nft-group {
 			display: block;
-			width: $size*6;
+			width: $width-size*6;
 
 			&.not-align {
-				margin-top: $size;
+				margin-top: $width-size;
 			}
 
 			.nft {
-				width: $size*6;
-				height: $size*6;
-				border-radius: $size;
-				margin-bottom: $size;
+				width: $width-size*6;
+				height: $width-size*6;
+				border-radius: $width-size;
+				margin-bottom: $width-size;
 			}
 		}
 	}
 }
+
+@media only screen and (max-device-width: 480px) {
+
+}
+
+
 
 /* FOOTER */
 
@@ -264,19 +260,19 @@ footer {
 	position: relative;
 	width: 100%;
 	bottom: 0;
-	height: 150px;
+	height: 7.8vw;
 	z-index: 1000;
-	padding-top: $size * 2;
+	padding-top: $width-size * 2;
 	background-color: $background-color;
 
 	.citation{
 		font-family: 'Noto';
-		font-size: 26px;
-		letter-spacing: 4px;
+		font-size: $width-size;
+		letter-spacing: calc($width-size/6);
 	}
 
 	.logo {
-		padding-top: $size;
+		padding-top: $width-size;
 		font-family: 'Ninja Naruto';
 		color: $secondary-color;
 	}

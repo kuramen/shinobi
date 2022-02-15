@@ -36,7 +36,7 @@ html {
   font-weight: 300;
   font-style: normal;
   text-align: center;
-  font-size: 22.5px;
+  font-size: 1.2vw;
 }
 html a {
   text-decoration: none;
@@ -54,7 +54,7 @@ html h1, html h2, html h3, html h4 {
 }
 html h1 {
   font-family: "Roboto Bold";
-  font-size: 60px;
+  font-size: 3.2vw;
 }
 html h2 {
   color: #973700;
@@ -64,16 +64,16 @@ html h2 {
 /* HEADER */
 header {
   display: block;
-  height: 1000px;
+  height: 100vh;
   position: relative;
   z-index: 10;
 }
 header .layer {
   background-position: bottom center;
-  background-size: auto 1038px;
+  background-size: auto 105vh;
   background-repeat: repeat-x;
   width: 100%;
-  height: 1000px;
+  height: 100vh;
   position: absolute;
 }
 header .layer.parallax {
@@ -112,22 +112,12 @@ header .layer#layer-scrim {
   opacity: 0;
 }
 
-@media only screen and (max-device-width: 450px) {
-  /* PARALLAX */
-  header {
-    height: 550px;
-  }
-  header .layer {
-    position: absolute;
-    background-size: auto 600px;
-  }
-}
 /* NAVBAR */
 .navbar {
-  width: calc(100% - 120px);
+  width: calc(100% - 6.4vw);
   background-color: #210002;
   top: 0;
-  padding: 30px 60px;
+  padding: 1.6vw 3.2vw;
   z-index: 100;
   position: relative;
   display: flex;
@@ -140,21 +130,23 @@ header .layer#layer-scrim {
 .navbar .logo {
   display: inline-block;
   font-family: "Ninja Naruto";
-  width: 240px;
+  width: 20vw;
+  font-size: 2.5vw;
   vertical-align: middle;
 }
 .navbar .nav-links {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 .navbar .nav-links .nav-item a {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 0.8vw 1.6vw;
   text-decoration: none;
   color: #FFAF00;
 }
 .navbar .nav-links .nav-item a img {
-  height: 30px;
+  height: 1.6vw;
   fill: #FFAF00;
 }
 
@@ -164,14 +156,14 @@ main {
   justify-content: space-between;
   position: relative;
   top: 0;
-  width: calc(100% - 240px);
-  height: 400px;
-  padding: 60px 120px;
+  width: calc(100% - 12.8vw);
+  height: 25vw;
+  padding: 3.2vw 6.4vw;
   background-color: #210002;
   z-index: 100;
 }
 main.sticky {
-  padding: 60px;
+  padding: 3.2vw;
 }
 main .description {
   display: block;
@@ -179,12 +171,12 @@ main .description {
   text-align: left;
 }
 main .description h1, main .description p, main .description a {
-  padding-bottom: 30px;
+  padding-bottom: 1.6vw;
 }
 main .description img {
-  width: 45px;
-  height: 45px;
-  padding-left: 30px;
+  width: 2.4vw;
+  height: 2.4vw;
+  padding-left: 1.6vw;
 }
 main .list {
   display: flex;
@@ -193,16 +185,16 @@ main .list {
 }
 main .list .nft-group {
   display: block;
-  width: 180px;
+  width: 9.6vw;
 }
 main .list .nft-group.not-align {
-  margin-top: 30px;
+  margin-top: 1.6vw;
 }
 main .list .nft-group .nft {
-  width: 180px;
-  height: 180px;
-  border-radius: 30px;
-  margin-bottom: 30px;
+  width: 9.6vw;
+  height: 9.6vw;
+  border-radius: 1.6vw;
+  margin-bottom: 1.6vw;
 }
 
 /* FOOTER */
@@ -211,18 +203,18 @@ footer {
   position: relative;
   width: 100%;
   bottom: 0;
-  height: 150px;
+  height: 7.8vw;
   z-index: 1000;
-  padding-top: 60px;
+  padding-top: 3.2vw;
   background-color: #210002;
 }
 footer .citation {
   font-family: "Noto";
-  font-size: 26px;
-  letter-spacing: 4px;
+  font-size: 1.6vw;
+  letter-spacing: 0.2666666667vw;
 }
 footer .logo {
-  padding-top: 30px;
+  padding-top: 1.6vw;
   font-family: "Ninja Naruto";
   color: #973700;
 }
