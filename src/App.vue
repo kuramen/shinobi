@@ -2,7 +2,7 @@
 header
   Nav
 
-RouterView
+HomeView
 
 Footer
 </template>
@@ -10,10 +10,11 @@ Footer
 <script>
 import Nav from '@/components/Nav.vue'
 import Footer from '@/components/Footer.vue'
+import HomeView from '@/views/HomeView.vue'
 
 export default {
   name: "App",
-  components: { Nav, Footer }
+  components: { Nav, HomeView, Footer }
 }
 </script>
 

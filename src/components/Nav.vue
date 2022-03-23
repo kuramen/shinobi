@@ -3,7 +3,7 @@ nav
     RouterLink(:to="{ name: ''}").logo 
         img(src="/images/logo.png" alt="Shinobi NFT")
     ul.desktop-nav(:class="`${false ? 'mobile' : 'desktop'}-nav`")
-        li.nav-link
+        li.nav-link(v-if="false")
             RouterLink.link(v-for="item in navigation" :to="{ name: item.name }") {{ item.name }}
         li.nav-social
             SocialIcon(v-for="social in socials" :social-network="social.name")
