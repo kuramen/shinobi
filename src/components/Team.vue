@@ -21,9 +21,9 @@ export default {
     data() {
         return {
             members: [
-                { name: 'Ririan', role: 'Comm', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-                { name: 'Makushimu', role: 'Artist', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-                { name: 'Kureman', role: 'Dev', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }
+                { name: 'Ririan', role: 'Comm', description: 'Ririan has vast experience in business and investment management, being an established figure in the crypto industry. He currently informs over 180,000+ users about crypto world. He has been interested in Crypto since 2015.' },
+                { name: 'Makushimu', role: 'Artist', description: "Makushimu is a full-time, freelance artist with an extensive background spanning across several fields including advertisements, board games and films. Shinobi is Makushimu's first NFT project but certainly not the last." },
+                { name: 'Kureman', role: 'Dev', description: 'Kureman is a full-stack web developer, specializing in JavaScript. He previously worked in fintech company to secure payments but turned to crypto since 2019.' }
             ]
         }
     }

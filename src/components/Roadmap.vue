@@ -34,11 +34,12 @@ export default {
   data() {
       return {
           roadmap: [
-              { percentage: 10, title: 'First Blood',  description: 'Special giveaway for all vampires within the first week.'},
-              { percentage: 25, title: 'Night fall',  description: 'All all vampires will get special companion; the Syndicate releases bats.'},
-              { percentage: 50, title: 'Twilight',  description: 'It gets cold without sunlight. Merch release.'},
-              { percentage: 75, title: 'Eclipse',  description: 'Introduction of the Vampire Lair. Metaver land purchased, ready to kick back.'},
-              { percentage: 100, title: 'Shinobi Live',  description: 'Generation 2 Teaser.'}
+              { percentage: 10, title: 'Community',  description: 'The total supply & price of Shinobis will be decided by the community.'},
+              { percentage: 15, title: 'Whitelist',  description: 'Earn your place in the whitelist. More info on twitter and discord.'},
+              { percentage: 25, title: 'Collaborations',  description: 'Several collaborations, partnerships & giveaways will be announced.'},
+              { percentage: 50, title: 'Presale',  description: 'Whitelisted members will be able to mint their Shinobis before anyone else & at a cheaper price.'},
+              { percentage: 75, title: 'Public sale',  description: 'Anyone will be able to mint their Shinobis.'},
+              { percentage: 100, title: 'Shinobi Live',  description: 'Road to Hokage (R2E roadmap incoming).'}
           ],
           activePoint: 2
       }
