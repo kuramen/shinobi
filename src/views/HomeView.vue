@@ -24,7 +24,6 @@ main {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  overflow-y: hidden;
 
   .section {
     display: flex;

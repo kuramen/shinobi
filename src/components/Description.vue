@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .content {
+    .section.description .content {
       img.nft {
         width: 200px;
         border-radius: 25px;

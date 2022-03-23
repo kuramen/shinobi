@@ -19,9 +19,16 @@ export default {
 
 <style lang="scss">
 
+html {
+  background-color: $background-color;
+  overflow-x: hidden;
+}
+
 body {
   padding: 0;
   margin: 0;
+  position: relative;
+  overflow-x: hidden;
 }
 
 #app {
@@ -29,11 +36,9 @@ body {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: $background-color;
 }
 
 header {
-  background-color: $background-color;
   z-index: 100;
   width: 100%;
   color: $primary-color;
