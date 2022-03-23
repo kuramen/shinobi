@@ -16,10 +16,9 @@ footer {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 8rem;
+	height: 200px;
 
 	background-color: $background-color;
 
@@ -35,6 +34,7 @@ footer {
 		font-family: "Njnaruto", sans-serif;
 		color: $secondary-color;
 		font-size: 1.5em;
+		margin-bottom: 100px;
 	}
 
 	@media (max-width:800px){

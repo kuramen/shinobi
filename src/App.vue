@@ -38,6 +38,7 @@ html {
   background-color: $background-color;
   overflow: overlay;
   scroll-behavior: smooth;
+  user-select: none;
 }
 
 body {
