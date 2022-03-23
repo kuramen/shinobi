@@ -90,8 +90,8 @@ export default {
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            gap: 20px;
-            grid-gap: 20px;
+            gap: 30px;
+            grid-gap: 30px;
 
             a {
                 height: 100%;

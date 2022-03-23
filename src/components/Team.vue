@@ -4,7 +4,7 @@
         .group
             h2 Behind Shinobi NFT
             h1.title Team
-        h3.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        h3.description It was during a conversation that the Shinobi project was born. The goal was to give a real use to NFTs while participating in the development of the Oasis Network ecosystem. Passionate about manga, the theme was obvious. The Shinobi collection created by a group of friends who had a vision and passion regarding the crypto space and NFt's in general.
     .content
         .team-member(v-for="member in members")
             img.nft(:src="`/images/members/${member.name}.png`")
@@ -12,7 +12,6 @@
                 h4.role {{ member.role }}
                 h5.name {{ member.name }}
             p.description {{ member.description }}
-
 
 </template>
 

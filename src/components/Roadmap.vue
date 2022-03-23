@@ -38,7 +38,7 @@ export default {
               { percentage: 25, title: 'Night fall',  description: 'All all vampires will get special companion; the Syndicate releases bats.'},
               { percentage: 50, title: 'Twilight',  description: 'It gets cold without sunlight. Merch release.'},
               { percentage: 75, title: 'Eclipse',  description: 'Introduction of the Vampire Lair. Metaver land purchased, ready to kick back.'},
-              { percentage: 100, title: 'Vamps Live',  description: 'Generation 2 Teaser.'}
+              { percentage: 100, title: 'Shinobi Live',  description: 'Generation 2 Teaser.'}
           ],
           activePoint: 2
       }
