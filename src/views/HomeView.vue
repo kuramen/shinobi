@@ -105,7 +105,7 @@ main {
 
       @media (max-width:800px){
         flex-direction: column;
-        text-align: center;
+        text-align: justify;
       }
     }
 
