@@ -52,6 +52,7 @@ export default {
 
 <style lang="scss" scoped>
     nav {
+        position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;

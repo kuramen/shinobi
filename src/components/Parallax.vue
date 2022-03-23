@@ -9,6 +9,8 @@
         style="transform: translate3d(0px, 0px, 0px)"
     )
     .layer.static(v-else)
+        img.logo(src="/images/logo.png")
+        .gradient
 </template>
 
 <script>
@@ -49,16 +51,15 @@ export default {
 
 <style lang="scss">
 .hero {
-    display: inline-block;
     position: relative;
     width: 100%;
     height: 100vh;
 
     .layer {
         display: block;
+        position: relative;
         width: 100%;
         height: 100vh;
-
         &.parallax {
             position: fixed;
             background-attachment:fixed;
@@ -107,7 +108,34 @@ export default {
         }
 
         &.static {
-            background: url('/images/parallax/static.jpeg') top right no-repeat;;
+            background: url('/images/parallax/static.jpeg') 35% center no-repeat;
+            padding-top: 100px;
+
+            .logo {
+                margin: auto;
+                width: 400px;
+                display: block;
+            }
+
+            .gradient {
+                width: 100%;
+                height: 400px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                margin: 0;
+                padding: 0;
+                background-image: linear-gradient(transparent 10%, $background-color 75%);
+            }
+
+            @media only screen and (max-device-width: 750px) {
+                background: url('/images/parallax/static.jpeg') 35% 75% no-repeat;
+                padding-top: 100px;
+
+                .logo {
+                    width: 250px;
+                }
+            }
         }
 
         @media only screen and (max-device-width: 450px) {
