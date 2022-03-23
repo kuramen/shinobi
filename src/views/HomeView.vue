@@ -42,7 +42,9 @@ main {
     }
 
     h1 {
-      font-size: 94px;
+      font-family: "Hartone Softed", sans-serif;
+      font-size: 120px;
+      font-weight: 100;
       color: $primary-color;
     }
 
@@ -65,6 +67,7 @@ main {
     }
 
     h5 {
+      font-family: "Njnaruto", sans-serif;
       font-size: 30px;
       color: $primary-color;
     }
@@ -75,7 +78,7 @@ main {
 
     @media (max-width:750px){
       h1 {
-        font-size: 40px;
+        font-size: 55px;
       }
 
       h2 {
