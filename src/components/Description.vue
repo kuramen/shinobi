@@ -13,7 +13,7 @@ export default {
     name: "description",
     data() {
       return {
-        nfts: [...Array(9).keys()]
+        nfts: [...Array(7).keys()]
       }
     }
 }
