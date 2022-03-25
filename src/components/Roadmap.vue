@@ -41,7 +41,7 @@ export default {
               { percentage: 75, title: 'Public sale',  description: 'Anyone will be able to mint their Shinobis.'},
               { percentage: 100, title: 'Shinobi Live',  description: 'Road to Hokage (R2E roadmap incoming).'}
           ],
-          activePoint: 0
+          activePoint: 2
       }
   }
 }
@@ -50,6 +50,8 @@ export default {
 <style lang="scss">
     .content svg.timeline{
         font-family: "Roboto", sans-serif;
+        width: 100%;
+        min-height: auto;
         
         .dash-line {
             stroke: $secondary-color;
