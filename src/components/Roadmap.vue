@@ -52,6 +52,11 @@ export default {
         font-family: "Roboto", sans-serif;
         width: 100%;
         height: 100%;
+
+        @media (max-width:750px){
+            width: auto;
+            height: auto;
+        }
         
         .dash-line {
             stroke: $secondary-color;
