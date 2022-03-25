@@ -108,7 +108,7 @@ export default {
         }
 
         &.static {
-            background: url('/images/parallax/static.jpeg') 35% center no-repeat;
+            background: url('/images/parallax/static.jpg') center center no-repeat;
             padding-top: 100px;
 
             .logo {
@@ -129,7 +129,7 @@ export default {
             }
 
             @media only screen and (max-device-width: 750px) {
-                background: url('/images/parallax/static.jpeg') 35% 75% no-repeat;
+                background: url('/images/parallax/static.jpg') 41% 65% no-repeat;
                 padding-top: 100px;
 
                 .logo {

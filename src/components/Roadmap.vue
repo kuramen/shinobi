@@ -41,7 +41,7 @@ export default {
               { percentage: 75, title: 'Public sale',  description: 'Anyone will be able to mint their Shinobis.'},
               { percentage: 100, title: 'Shinobi Live',  description: 'Road to Hokage (R2E roadmap incoming).'}
           ],
-          activePoint: 2
+          activePoint: 0
       }
   }
 }
