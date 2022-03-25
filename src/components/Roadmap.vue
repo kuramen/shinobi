@@ -51,7 +51,7 @@ export default {
     .content svg.timeline{
         font-family: "Roboto", sans-serif;
         width: 100%;
-        min-height: auto;
+        height: 100%;
         
         .dash-line {
             stroke: $secondary-color;
