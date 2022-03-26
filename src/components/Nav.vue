@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     nav {
         position: relative;
         display: flex;
@@ -97,6 +97,10 @@ export default {
             a {
                 height: 100%;
                 width: 35px;
+
+                svg.logo path {
+                    fill: $primary-color;
+                }
             }
 
         }

@@ -34,10 +34,14 @@ export default {
 .team-member {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     grid-gap: 25px;
     gap: 25px;
+    width: 30%;
+
+    @media (max-width:750px){
+        width: 100%;
+    }
 
     img.nft {
         width: 200px;

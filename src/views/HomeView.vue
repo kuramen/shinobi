@@ -5,16 +5,18 @@ main
   Description
   Team
   Roadmap
+  Statistics
 </template>
 
 <script>
 import Description from "@/components/Description.vue";
 import Team from "@/components/Team.vue";
 import Roadmap from "@/components/Roadmap.vue";
+import Statistics from "@/components/Statistics.vue";
 
 export default {
   name: "HomeView",
-  components: { Description, Roadmap, Team }
+  components: { Description, Roadmap, Team, Statistics }
 }
 </script>
 

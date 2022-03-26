@@ -48,121 +48,130 @@ export default {
 </script>
 
 <style lang="scss">
-    .content svg.timeline{
-        font-family: "Roboto", sans-serif;
-        width: 100%;
-        height: 100%;
+    .section.roadmap {
+        .content {
+            grid-gap: 0;
+            gap: 0;
+            align-items: center;
+                
 
-        @media (max-width:750px){
-            width: auto;
-            height: auto;
-        }
-        
-        .dash-line {
-            stroke: $secondary-color;
-            stroke-width: 3;
-            stroke-dasharray: 15, 15;
-            stroke-dashoffset: 40; 
-        }
+            svg.timeline{
+                font-family: "Roboto", sans-serif;
+                width: 100%;
+                height: 100%;
 
-        g {
-            foreignObject p.description {
-                color: $secondary-color;
-                font-size: 19px;
-                text-align: left;
-            }
-            .percentage {
-                font-size: 20px;
-            }
+                @media (max-width:750px){
+                    width: 80%;
+                    height: auto;
+                }
+                
+                .dash-line {
+                    stroke: $secondary-color;
+                    stroke-width: 3;
+                    stroke-dasharray: 15, 15;
+                    stroke-dashoffset: 40; 
+                }
 
-            .title {
-                font-size: 26px;
-                fill: $tertiary-color;
-                transform: translateX(0px);
-            }
-
-            .check {
-                fill: $primary-color;
-                transform: translateX(-185px);
-            }
-
-
-            .percentage,
-            .dot {
-                fill: $secondary-color;
-            }
-
-            .little-dot {
-                display: none;
-            }
-
-            .line {
-                stroke: $primary-color;
-                stroke-width: 3;
-            }
-            
-
-            &.left {
-                foreignObject {
-                    transform: translateX(-420px);
-                    p.description {
-                        text-align: right;
+                g {
+                    foreignObject p.description {
+                        color: $secondary-color;
+                        font-size: 19px;
+                        text-align: left;
                     }
-                }
+                    .percentage {
+                        font-size: 20px;
+                    }
 
-                .title,
-                .percentage {
-                    text-anchor: end;
-                    transform: translateX(-123px)
-                }
+                    .title {
+                        font-size: 26px;
+                        fill: $tertiary-color;
+                        transform: translateX(0px);
+                    }
 
-                .check {
-                    transform: translateX(-325px);
-                }
-            }
+                    .check {
+                        fill: $primary-color;
+                        transform: translateX(-185px);
+                    }
 
-            &.active {
-                .percentage {
-                    fill: $primary-color;
-                }
 
-                .dot {
-                    stroke: $primary-color;
-                    stroke-width: 1;
-                }
+                    .percentage,
+                    .dot {
+                        fill: $secondary-color;
+                    }
 
-                .little-dot {
-                    fill: $primary-color;
-                    display: block;
-                }
+                    .little-dot {
+                        display: none;
+                    }
 
-                .title {
-                    transform: translateX(35px)
-                }
-                
-                &.left .title {
-                    transform: translateX(-155px)
-                }
+                    .line {
+                        stroke: $primary-color;
+                        stroke-width: 3;
+                    }
+                    
 
-            }
+                    &.left {
+                        foreignObject {
+                            transform: translateX(-420px);
+                            p.description {
+                                text-align: right;
+                            }
+                        }
 
-            &.previous {
-                .percentage {
-                    fill: $primary-color;
-                }
+                        .title,
+                        .percentage {
+                            text-anchor: end;
+                            transform: translateX(-123px)
+                        }
 
-                .dot {
-                    fill: $primary-color
-                }
+                        .check {
+                            transform: translateX(-325px);
+                        }
+                    }
 
-                .title {
-                    text-decoration: line-through;
-                    transform: translateX(35px)
-                }
-                
+                    &.active {
+                        .percentage {
+                            fill: $primary-color;
+                        }
 
-                &.left .title {
-                    transform: translateX(-155px)
+                        .dot {
+                            stroke: $primary-color;
+                            stroke-width: 1;
+                        }
+
+                        .little-dot {
+                            fill: $primary-color;
+                            display: block;
+                        }
+
+                        .title {
+                            transform: translateX(35px)
+                        }
+                        
+                        &.left .title {
+                            transform: translateX(-155px)
+                        }
+
+                    }
+
+                    &.previous {
+                        .percentage {
+                            fill: $primary-color;
+                        }
+
+                        .dot {
+                            fill: $primary-color
+                        }
+
+                        .title {
+                            text-decoration: line-through;
+                            transform: translateX(35px)
+                        }
+                        
+
+                        &.left .title {
+                            transform: translateX(-155px)
+                        }
+                    }
                 }
             }
         }
