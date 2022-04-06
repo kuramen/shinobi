@@ -20,7 +20,7 @@ export default {
             stats: [
                 { number: undefined, label: 'Holders' },
                 { number: undefined, label: 'Staked token' },
-                { number: 100, label: 'Volume' }
+                { number: undefined, label: 'Volume' }
             ]
         }
     }

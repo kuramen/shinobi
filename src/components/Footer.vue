@@ -16,6 +16,7 @@ export default {
 		return {
 			socials: [
                 { name: 'twitter' },
+				{ name: 'medium' },
                 { name: 'discord' }
             ]
 		}

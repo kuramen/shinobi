@@ -1,7 +1,7 @@
 <template lang="pug">
 nav
     RouterLink(:to="{ name: ''}").logo 
-        img(src="/images/logo.png" alt="Shinobi NFT")
+        img(src="/images/logo.svg" alt="Shinobi NFT")
     ul.desktop-nav(:class="`${false ? 'mobile' : 'desktop'}-nav`")
         li.nav-link(v-if="false")
             RouterLink.link(v-for="item in navigation" :to="{ name: item.name }") {{ item.name }}
@@ -26,6 +26,7 @@ export default {
             isMobileNavOpen: false,
             socials: [
                 { name: 'twitter' },
+                { name: 'medium' },
                 { name: 'discord' }
             ],
             navigation: []
@@ -59,7 +60,8 @@ export default {
         justify-content: space-between;
         max-width: 1080px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 20px;
+        border-top: 2px $background-color;
 
         ul, .link {
             font-weight: 500;
@@ -91,12 +93,12 @@ export default {
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            gap: 30px;
-            grid-gap: 30px;
+            gap: 20px;
+            grid-gap: 20px;
 
             a {
                 height: 100%;
-                width: 35px;
+                width: 30px;
 
                 svg.logo path {
                     fill: $primary-color;
