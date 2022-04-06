@@ -1,6 +1,6 @@
 <template lang="pug">
-a(:href="`${configuration.url}/${configuration.account}`" target="_blank")
-	svg(xmlns="http://www.w3.org/2000/svg" :viewBox="configuration.viewBox")
+a.social(:href="`${configuration.url}/${configuration.account}`" target="_blank")
+	svg.logo(xmlns="http://www.w3.org/2000/svg" :viewBox="configuration.viewBox")
 		path(:d="configuration.dPath")
 </template>
 
@@ -25,15 +25,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-a svg {
+<style lang="scss">
+a.social svg {
     width: 100%;
-	path {
-		fill: $primary-color
-	}
-}
-
-a:hover path {
-	fill: $secondary-color
 }
 </style>
