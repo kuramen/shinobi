@@ -41,6 +41,8 @@ export default {
 
     @media (max-width:750px){
         width: 100%;
+        max-width: 524px;
+        margin : auto;
     }
 
     img.nft {
