@@ -1,12 +1,11 @@
 <template lang="pug">
 nav
-    RouterLink(:to="{ name: ''}").logo 
+    .logo 
         img(src="/images/logo.svg" alt="Shinobi NFT")
     ul.desktop-nav(:class="`${false ? 'mobile' : 'desktop'}-nav`")
         li.nav-link(v-if="false")
-            RouterLink.link(v-for="item in navigation" :to="{ name: item.name }") {{ item.name }}
-        li.nav-social
-            SocialIcon(v-for="social in socials" :social-network="social.name")
+            .link(v-for="item in navigation" :to="{ name: item.name }") {{ item.name }}
+        Metamask
     .mobile-icon(v-if="false" @click="toggleMobileNav" :class="{ 'active': isMobileNavOpen }")
         span
         span
@@ -14,21 +13,16 @@ nav
 </template>
 
 <script>
-import SocialIcon from "@/components/icons/Social.vue";
 import Mobile from "@/mixins/Mobile.js";
+import Metamask from "@/components/icons/Metamask.vue";
 
 export default {
     app: "Nav",
-    components: { SocialIcon },
+    components: { Metamask },
     mixins: [ Mobile ],
     data() {
         return {
             isMobileNavOpen: false,
-            socials: [
-                { name: 'twitter' },
-                { name: 'medium' },
-                { name: 'discord' }
-            ],
             navigation: []
         };
     },
@@ -86,25 +80,6 @@ export default {
                     border-color: $secondary-color;
                 }
             }
-        }
-
-        .nav-social {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            gap: 20px;
-            grid-gap: 20px;
-
-            a {
-                height: 100%;
-                width: 30px;
-
-                svg.logo path {
-                    fill: $primary-color;
-                }
-            }
-
         }
 
         .logo {
