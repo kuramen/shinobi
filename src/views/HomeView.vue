@@ -3,6 +3,7 @@
 <template lang="pug">
 main
   Description
+  News
   Team
   Roadmap
   Statistics
@@ -13,10 +14,11 @@ import Description from "@/components/Description.vue";
 import Team from "@/components/Team.vue";
 import Roadmap from "@/components/Roadmap.vue";
 import Statistics from "@/components/Statistics.vue";
+import News from "@/components/News.vue";
 
 export default {
   name: "HomeView",
-  components: { Description, Roadmap, Team, Statistics }
+  components: { Description, Roadmap, Team, Statistics, News }
 }
 </script>
 
