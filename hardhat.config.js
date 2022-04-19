@@ -1,4 +1,10 @@
+require("dotenv").config();
+
+//require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
+//require("hardhat-gas-reporter");
+require("solidity-coverage");
+
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -21,10 +27,24 @@ module.exports = {
   paths: {
     artifacts: './src/artifacts'
   },
+  mocha: {
+    timeout: 60000
+  },
   networks: {
-    ropsten: {
-      url: "https://ropsten.infura.io/v3/e87a7769a93e4e508eeab0da1f0025b8",
-      accounts: ['remplacerParVotreCleePrivée']
-    }
+    emerald_local: {
+      url: "http://localhost:8545",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
+    emerald_testnet: {
+      url: "https://testnet.emerald.oasis.dev",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
+    emerald_mainnet: {
+      url: "https://emerald.oasis.dev",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
   }
 };

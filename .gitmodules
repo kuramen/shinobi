@@ -1,0 +1,3 @@
+[submodule "art-engine"]
+	path = scripts/art-engine
+	url = https://github.com/nftchef/art-engine.git
