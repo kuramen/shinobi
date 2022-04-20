@@ -26,11 +26,6 @@ export default {
             navigation: []
         };
     },
-    setup() {
-        return {
-            
-        }
-    },
     watch: {
         isMobile: "resetMobileNav"
     },

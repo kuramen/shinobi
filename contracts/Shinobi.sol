@@ -22,12 +22,12 @@ contract ShinobiERC721A is Ownable, ERC721A, ReentrancyGuard, PaymentSplitter {
     uint private constant MAX_PUBLIC = 700;
     uint private constant MAX_GIFT = 30;
 
-    uint public wlSalePrice = 0.0025 ether;
+    uint public privateSalePrice = 0.0025 ether;
     uint public publicSalePrice = 0.003 ether;
 
     bytes32 public merkleRoot;
 
-    uint public wlSaleStartTime = 1650643200;
+    uint public privateSaleStartTime = 1650643200;
     uint public publicSaleStartTime = 1650902400;
     
 
@@ -48,12 +48,12 @@ contract ShinobiERC721A is Ownable, ERC721A, ReentrancyGuard, PaymentSplitter {
     }
 
     function whitelistMint(address _account, uint _quantity, bytes32[] calldata _proof) external payable callerIsUser {
-        uint price = wlSalePrice;
+        uint price = privateSalePrice;
         require(price != 0, "Price is 0");
-        require(currentTime() >= wlSaleStartTime, "Whitelist Sale has not started yet");
+        require(currentTime() >= privateSaleStartTime, "Private Sale has not started yet");
         require(currentTime() < publicSaleStartTime, "Whitelist Sale is finished");
         require(isWhiteListed(msg.sender, _proof), "Not whitelisted");
-        require(amountNFTsperWalletWhitelistSale[msg.sender] + _quantity <= 1, "You can only get 1 NFT on the Whitelist Sale");
+        require(amountNFTsperWalletWhitelistSale[msg.sender] + _quantity <= 2, "Only 2 NFT on private Sale");
         require(totalSupply() + _quantity <= MAX_WHITELIST, "Max supply exceeded");
         require(msg.value >= price * _quantity, "Not enought funds");
         amountNFTsperWalletWhitelistSale[msg.sender] += _quantity;
@@ -74,8 +74,8 @@ contract ShinobiERC721A is Ownable, ERC721A, ReentrancyGuard, PaymentSplitter {
         _safeMint(_to, _quantity);
     }
 
-    function setWlSaleStartTime(uint _wlSaleStartTime) external onlyOwner {
-        wlSaleStartTime = _wlSaleStartTime;
+    function setPrivateSaleStartTime(uint _privateSaleStartTime) external onlyOwner {
+        privateSaleStartTime = _privateSaleStartTime;
     }
 
     function setPublicSaleStartTime(uint _publicSaleStartTime) external onlyOwner {

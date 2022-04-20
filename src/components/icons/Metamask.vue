@@ -1,7 +1,8 @@
 <template lang="pug">
 .metamask(@mouseover="hasTails = true" @mouseleave="hasTails = false")
-    a.balance(v-if="!isMobile") {{`Balance: ${balance} Rose`}}
-    button.connect
+    button.connect(v-if="user")
+        span {{`Connected to ${this.user}`}}
+    button.connect(v-else @click="getWeb3Data")
         svg(viewBox="0 0 540 330" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice")
             path.tail.tail-1(:class="{visible: hasTails}")
             path.tail.tail-2(:class="{visible: hasTails}")
@@ -48,15 +49,22 @@
 </template>
 
 <script>
-import Mobile from "@/mixins/Mobile.js";
+import Mobile from "@/mixins/Mobile.js"
+import Web3 from "@/mixins/Web3.js"
+
+import { mapState } from 'pinia'
+import { useWeb3Store } from '@/stores/web3'
 
 export default {
-    mixins: [ Mobile ],
+    mixins: [ Mobile, Web3 ],
     data() {
         return {
             balance: 0,
             hasTails: false
         }
+    },
+    computed: {
+        ...mapState(useWeb3Store, ['user'])
     }
 }
 </script>

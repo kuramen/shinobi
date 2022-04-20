@@ -1,0 +1,37 @@
+{
+    "contractAdress": "0xA185fC4cc8f22dbBe0161C4BFC0368c33AbbF1E6",
+    "gasLimit": 285000,
+    "sale": {
+        "private": {
+            "time": 1650643200,
+            "price": 0.0025
+        },
+        "public": {
+            "time": 1650902400,
+            "price": 0.003
+        }
+    },
+    "networks": {
+        "testnet": {
+            "chainName": "Emerald Testnet",
+            "chainId": 42261,
+            "nativeCurrency": { "symbol": "ROSE" },
+            "rpcUrls": ["https://testnet.emerald.oasis.dev"],
+            "blockExplorerUrls": ["https://testnet.explorer.emerald.oasis.dev/"]
+        },
+        "mainnet": {
+            "chainName": "Emerald Mainnet",
+            "chainId": 42262,
+            "nativeCurrency": { "symbol": "ROSE" },
+            "rpcUrls": ["https://emerald.oasis.dev"],
+            "blockExplorerUrls": ["https://explorer.emerald.oasis.dev/"]
+        }
+    },
+    "collection": {
+        "nftName": "Shinobi",
+        "symbol": "SHINO",
+        "maxSupply": 1000,
+        "marketplace": "Tofunft",
+        "marketplaceLink": "https://tofunft.com/discover/items?contracts=13280&network=42262"
+    }
+}

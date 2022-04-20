@@ -6,22 +6,18 @@
 Error.stackTraceLimit = Infinity;
 const hre = require("hardhat");
 const { MerkleTree } = require("merkletreejs");
-const keccak256 = require("keccak256");
+const { keccak256 } = require("@ethersproject/keccak256");
+const fs = require('fs');
 
-const whitelist = require("./whitelist.json");
-const owner = "0x25a5367Ea3f8d45E9601a70ECcC020f20A6Ac3FE"
-const team = ["0x25a5367Ea3f8d45E9601a70ECcC020f20A6Ac3FE"]
-const teamShares = [100]
+const whitelist = require("../../src/configuration/Whitelist.json");
+const team = require("../../src/configuration/Team.json");
+
 const baseUrl = "ipfs://TEST"
 
-async function getMerkle(owner: any, whitelist: any) {
-  const leaves = whitelist.map(keccak256);
-  const tree = new MerkleTree(leaves, keccak256, { sort: true });
-  const root = tree.getHexRoot();
-  const leaf = keccak256(owner);
-  const proof = tree.getHexProof(leaf);
-  console.log("root : " + root);
-  console.log("proof : " + proof);
+async function getMerkle(whitelist: Array<String>) {
+  const leaves = whitelist.map(keccak256)
+  const tree = new MerkleTree(leaves, keccak256, { sort: true })
+  const root = tree.getHexRoot()
   return root
 }
 
@@ -35,10 +31,12 @@ async function main() {
 
   // We get the contract to deploy
   const Shinobi = await hre.ethers.getContractFactory("ShinobiERC721A");
-  const root = getMerkle(owner, whitelist)
-  const shinobi = await Shinobi.deploy(team, teamShares, root, baseUrl);
+  const teamAdresses = team.map((member: any) => member.address)
+  const teamShares = team.map((member: any) => member.share)
+  const root = getMerkle(whitelist.concat(teamAdresses))
+  const shinobi = await Shinobi.deploy(teamAdresses, teamShares, root, baseUrl);
 
-  await shinobi.deployed();
+  // await shinobi.deployed();
 
   console.log("Shinobi deployed to:", shinobi.address);
 }
