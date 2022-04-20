@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+//require("dotenv").config();
 
 import App from './App.vue'
 

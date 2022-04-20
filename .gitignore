@@ -1,6 +1,10 @@
 .DS_Store
 node_modules
 /dist
+.env
+coverage
+coverage.json
+typechain
 
 # local env files
 .env.local
@@ -19,3 +23,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+#Hardhat files
+cache
+artifacts
