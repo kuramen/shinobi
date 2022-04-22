@@ -3,6 +3,7 @@
 <template lang="pug">
 main
   Description
+  Mint
   News
   Team
   Roadmap
@@ -15,10 +16,11 @@ import Team from "@/components/Team.vue";
 import Roadmap from "@/components/Roadmap.vue";
 import Statistics from "@/components/Statistics.vue";
 import News from "@/components/News.vue";
+import Mint from "@/components/Mint.vue";
 
 export default {
   name: "HomeView",
-  components: { Description, Roadmap, Team, Statistics, News }
+  components: { Description, Roadmap, Team, Statistics, News, Mint }
 }
 </script>
 
