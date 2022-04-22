@@ -1,4 +1,4 @@
-import Shinobi from '@/artifacts/contracts/Shinobi.sol/ShinobiERC721.json'
+import Shinobi from '@/configuration/ShinobiERC721.json'
 import web3Config from '@/configuration/Web3.json'
 import { ethers } from 'ethers'
 import detectEthereumProvider from '@metamask/detect-provider'
