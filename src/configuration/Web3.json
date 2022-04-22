@@ -1,14 +1,14 @@
 {
-    "contractAdress": "0x05D33da4783258a5957C9067222d410905Fbc835",
+    "contractAdress": "0xd643372ff91a035F9D311D90B1De5B6AB5952Ca7",
     "gasLimit": 285000,
     "sale": {
         "private": {
             "time": 1650643200000,
-            "price": 0.1
+            "price": 325
         },
         "public": {
             "time": 1650902400000,
-            "price": 0.2
+            "price": 425
         }
     },
     "networks": {

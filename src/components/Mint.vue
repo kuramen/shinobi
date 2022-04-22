@@ -1,6 +1,6 @@
 <template lang="pug">
 .mint
-    .countdown(v-if="!isPrivateSale && !isPublicSale && isSoldOut")
+    .countdown(v-if="!isPrivateSale && !isPublicSale && !isSoldOut")
         h2.title Mint in
         p {{ countdown }}
     .minter(v-else)
@@ -80,7 +80,7 @@ export default {
             if (this.quantity > 1) this.quantity -= 1
         },
         addQuantity() {
-            this.quantity += 1
+            if(!(this.isPrivateSale && this.quantity >= 2)) this.quantity += 1
         },
         setCountDown() {
             const now = new Date().getTime();

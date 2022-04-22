@@ -33,7 +33,7 @@ export const useWeb3Store = defineStore('web3', {
       this.collection.soldSupply = ''
     },
     setTree() {
-      if (!tree) {
+      if (!this.tree) {
         const teamAdresses = team.map(member => member.address)
         const leaves = whitelist.concat(teamAdresses).map(keccak256)
         this.tree = new MerkleTree(leaves, keccak256, { sort: true })

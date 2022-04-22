@@ -52,7 +52,7 @@
 import Mobile from "@/mixins/Mobile.js"
 import Web3 from "@/mixins/Web3.js"
 
-import { mapState } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import { useWeb3Store } from '@/stores/web3'
 
 export default {
@@ -67,7 +67,11 @@ export default {
         ...mapState(useWeb3Store, ['user'])
     },
     async created() {
+        this.setTree()
         await this.getWeb3Data()
+    },
+    methods: {
+        ...mapActions(useWeb3Store, ['setTree'])
     }
 }
 </script>

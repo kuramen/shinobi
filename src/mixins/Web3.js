@@ -38,7 +38,7 @@ export default {
 
             // Check provider network
             const chainId = await window.ethereum.request({ method: "eth_chainId" })
-            const networkConfig = web3Config.networks['testnet']
+            const networkConfig = web3Config.networks.mainnet
             if (chainId !== networkConfig.chainId) {
                 try {
                     await window.ethereum.request({
@@ -97,12 +97,12 @@ export default {
                 let transaction
                 
                 if (this.isPrivateSale) {
-                    const cost = await contract.pricePresale()
+                    const cost = await contract.privateSalePrice()
                     const overrides = { from: account, value: cost }
                     const proof = this.getProof(account)
                     transaction = await contract.privateSaleMint(account, quantity, proof, overrides)
                 } else {
-                    const priceSale = await contract.priceSale()
+                    const priceSale = await contract.publicSalePrice()
                     const overrides = { from: account, value: priceSale }
                     transaction = await contract.publicSaleMint(quantity, overrides)
                 }
@@ -116,6 +116,7 @@ export default {
                         this.setError(errorMessage)
                         return
                     } catch(error) {
+                        console.error(error)
                         this.setError(error.message)
                     }
                 }
@@ -123,6 +124,7 @@ export default {
                 this.isSuccessfullyMinted = true
             }
             catch(error) {
+                console.error(error)
                 this.setError(error.message)
             }
         }

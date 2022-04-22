@@ -12,8 +12,8 @@ const fs = require('fs');
 const whitelist = require("../src/configuration/Whitelist.json");
 const team = require("../src/configuration/Team.json");
 
-const baseUri = "ipfs://baseUri"
-const notRevealedURI = "ipfs://notRevealedURI"
+const baseUri = "ipfs://Qmdo1EUtTrMJXBQ9igvfaPR2dfZZqA943FaqmY5BY4Rt9u"
+const notRevealedURI = "ipfs://QmYCudg9JRksCqAJY5qLdCx619HGXGCgtVYxwG26Tsr6mU"
 
 
 async function getMerkle(whitelist: Array<String>) {

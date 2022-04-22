@@ -27,10 +27,10 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
     uint public constant MAX_SUPPLY = 1000;
     //Maximum number of NFTs an address can mint
     uint public max_mint_allowed = 2;
-    //Price of one NFT in presale
-    uint public pricePresale = 0.1 ether;
+    //Price of one NFT in private Sale
+    uint public privateSalePrice = 325 ether;
     //Price of one NFT in sale
-    uint public priceSale = 0.2 ether;
+    uint public publicSalePrice = 425 ether;
 
     //URI of the NFTs when revealed
     string public baseURI;
@@ -48,8 +48,8 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
     //The different stages of selling the collection
     enum Steps {
         Before,
-        Presale,
-        Sale,
+        PrivateSale,
+        PublicSale,
         SoldOut,
         Reveal
     }
@@ -82,7 +82,7 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
     constructor(string memory _theBaseURI, string memory _notRevealedURI, bytes32 _merkleRoot) ERC721("Shinobi", "SHINO") PaymentSplitter(_team, _teamShares) {
         _nftIdCounter.increment();
         transferOwnership(msg.sender);
-        sellingStep = Steps.Sale;
+        sellingStep = Steps.Before;
         baseURI = _theBaseURI;
         notRevealedURI = _notRevealedURI;
         merkleRoot = _merkleRoot;
@@ -116,21 +116,21 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
     }
 
     /**
-    * @notice Change the price of one NFT for the presale
+    * @notice Change the price of one NFT for the private sale
     *
-    * @param _pricePresale The new price of one NFT for the presale
+    * @param _privateSalePrice The new price of one NFT for the private sale
     **/
-    function changePricePresale(uint _pricePresale) external onlyOwner {
-        pricePresale = _pricePresale;
+    function setPrivateSalePrice(uint _privateSalePrice) external onlyOwner {
+        privateSalePrice = _privateSalePrice;
     }
 
     /**
     * @notice Change the price of one NFT for the sale
     *
-    * @param _priceSale The new price of one NFT for the sale
+    * @param _publicSalePrice The new price of one NFT for the sale
     **/
-    function changePriceSale(uint _priceSale) external onlyOwner {
-        priceSale = _priceSale;
+    function setPublicSalePrice(uint _publicSalePrice) external onlyOwner {
+        publicSalePrice = _publicSalePrice;
     }
 
     /**
@@ -177,18 +177,18 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
     }
 
     /** 
-    * @notice Allows to change the sellinStep to Presale
+    * @notice Allows to change the sellinStep to PrivateSale
     **/
-    function setUpPresale() external onlyOwner {
-        sellingStep = Steps.Presale;
+    function setUpPrivateSale() external onlyOwner {
+        sellingStep = Steps.PrivateSale;
     }
 
     /** 
     * @notice Allows to change the sellinStep to Sale
     **/
-    function setUpSale() external onlyOwner {
-        require(sellingStep == Steps.Presale, "First the presale, then the sale.");
-        sellingStep = Steps.Sale;
+    function setUpPublicSale() external onlyOwner {
+        require(sellingStep == Steps.PrivateSale, "First the private sale, then the sale.");
+        sellingStep = Steps.PublicSale;
     }
 
     /**
@@ -197,15 +197,17 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
     * @param _account The account of the user minting the NFT
     * @param _proof The Merkle Proof
     **/
-    function privateSaleMint(address _account, bytes32[] calldata _proof) external payable nonReentrant {
-        //Are we in Presale ?
-        require(sellingStep == Steps.Presale, "Presale has not started yet.");
+    function privateSaleMint(address _account, uint256 _ammount, bytes32[] calldata _proof) external payable nonReentrant {
+        //Are we in PrivateSale ?
+        require(sellingStep == Steps.PrivateSale, "Private sale has not started yet.");
         //Did this account already mint an NFT ?
-        require(nftsPerWallet[_account] < 1, "You can only get 1 NFT on the Presale");
+        require(nftsPerWallet[_account] < max_mint_allowed, "You can only get 2 NFTs on the private sale");
         //Is this user on the whitelist ?
         require(isWhiteListed(_account, _proof), "Not on the whitelist");
-        //Get the price of one NFT during the Presale
-        uint price = pricePresale;
+        //The user can only mint max 2 NFTs
+        require(_ammount <= max_mint_allowed, "You can't mint more than 2 tokens");
+        //Get the price of one NFT during the Private sale
+        uint price = privateSalePrice;
         //Did the user send enought Ethers ?
         require(msg.value >= price, "Not enought funds.");
         //Increment the number of NFTs this user minted
@@ -225,15 +227,13 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
         //Get the number of NFT sold
         uint numberNftSold = totalSupply();
         //Get the price of one NFT in Sale
-        uint price = priceSale;
+        uint price = publicSalePrice;
         //If everything has been bought
         require(sellingStep != Steps.SoldOut, "Sorry, no NFTs left.");
         //If Sale didn't start yet
-        require(sellingStep == Steps.Sale, "Sorry, sale has not started yet.");
+        require(sellingStep == Steps.PublicSale, "Sorry, public sale has not started yet.");
         //Did the user then enought Ethers to buy ammount NFTs ?
         require(msg.value >= price * _ammount, "Not enought funds.");
-        //The user can only mint max 2 NFTs
-        require(_ammount <= max_mint_allowed, "You can't mint more than 2 tokens");
         //If the user try to mint any non-existent token
         require(numberNftSold + _ammount <= MAX_SUPPLY, "Sale is almost done and we don't have enought NFTs left.");
         //Add the ammount of NFTs minted by the user to the total he minted
@@ -313,5 +313,4 @@ contract ShinobiERC721 is ERC721Enumerable, PaymentSplitter, Ownable, Reentrancy
             ? string(abi.encodePacked(currentBaseURI, _nftId.toString(), baseExtension))
             : "";
     }
-
 }
