@@ -19,7 +19,6 @@ async function main() {
 
   // We get the contract to deploy
   const signer = await hre.ethers.getSigner();
-  console.log(signer)
   const contract = new hre.ethers.Contract(web3Config.contractAdress, ShinobiERC721.abi, signer)
   await contract.setUpPrivateSale()
 }
