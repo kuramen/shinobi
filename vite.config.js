@@ -9,6 +9,10 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
+      process: "process/browser",
+      stream: "stream-browserify",
+      zlib: "browserify-zlib",
+      util: 'util',
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
