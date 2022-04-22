@@ -6,6 +6,11 @@ import { mapState, mapActions } from 'pinia'
 import { useWeb3Store } from '@/stores/web3'
 
 export default {
+    data() {
+        return {
+            isSuccessfullyMinted: false
+        }  
+    },
     computed: {
         ...mapState(useWeb3Store, ['getProof', 'collection']),
         isPrivateSale() {
@@ -80,6 +85,7 @@ export default {
             }
         },
         async mint(quantity) {
+            this.isSuccessfullyMinted = false
             if (this.isSoldOut) return
             const { provider, ethersProvider } = await this.checkConnection()
             const [account] = await provider.request({method: 'eth_requestAccounts'})
@@ -112,6 +118,7 @@ export default {
                     }
                 }
                 await this.getWeb3Data()
+                this.isSuccessfullyMinted = true
             }
             catch(error) {
                 this.setError(error.message)

@@ -20,6 +20,10 @@
                 span.description Public sale price
         p.price-prevention Excludind gas fees
         h3.error(v-if="error") {{ error }}
+        h3.success(v-if="isSuccessfullyMinted")
+            | ✅ Transaction has been proceed successfully,
+            br
+            | your Shinobi is waiting for in your wallet.
         button.mint(@click="onMint" :disabled="isLoading" :class="{ loading: isLoading }") 
             span(v-if="!isLoading") {{ mintLabel }}
             svg(v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.072 42.072" )
@@ -231,6 +235,12 @@ export default {
         h3.error {
             font-size: 15px;
             color: red;
+        }
+
+        h3.success {
+            font-size: 15px;
+            color: green;
+            white-space:pre;
         }
 
         button.mint {
