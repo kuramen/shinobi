@@ -39,13 +39,13 @@ export const useWeb3Store = defineStore('web3', {
         this.tree = new MerkleTree(leaves, keccak256, { sort: true })
       } 
     },
-    async setWeb3Data({ account, contract }) {
+    async setWeb3Data({ account, soldSupply }) {
       const start = account?.substring(0,5) || ''
       const end = account?.slice(-4) || ''
       if (start && end) this.user = start + '...' + end
       else this.user = ''
 
-      if (contract) this.collection.soldSupply = await contract.totalSupply()
+      if (soldSupply) this.collection.soldSupply = soldSupply
     }
   }
 })

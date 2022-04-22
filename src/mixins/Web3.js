@@ -78,7 +78,9 @@ export default {
                 const [account] = await provider.request({method: 'eth_requestAccounts'})
                 const signer = ethersProvider.getSigner()
                 const contract = new ethers.Contract(web3Config.contractAdress, Shinobi.abi, signer)
-                await this.setWeb3Data({ account, contract })
+                const tempSupply = await contract.totalSupply()
+                const soldSupply = Math.round(parseFloat(ethers.utils.formatEther(tempSupply)) * (10 ** 18))
+                await this.setWeb3Data({ account, soldSupply })
             } catch (error) {
                 console.error(error)
                 this.setError(error.message)
