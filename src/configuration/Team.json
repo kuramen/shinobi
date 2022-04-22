@@ -5,10 +5,14 @@
     },
     {
         "address": "0x9317C997Cf9C949e9B8A5194Da9F2F73f067658c",
-        "share": 40
+        "share": 30
     },
     { 
         "address": "0x58c5bF4883a128fDDa83e4B052f110c416D96415",
-        "share": 40
+        "share": 30
+    },
+    { 
+        "address": "0x401c0335d7302f3403f5A4711056E5224A250e66",
+        "share": 30
     }
 ]

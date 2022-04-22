@@ -1,4 +1,4 @@
-import Shinobi from '@/artifacts/contracts/Shinobi.sol/ShinobiERC721A.json'
+import Shinobi from '@/artifacts/contracts/Shinobi.sol/ShinobiERC721.json'
 import web3Config from '@/configuration/Web3.json'
 import { ethers } from 'ethers'
 import detectEthereumProvider from '@metamask/detect-provider'
@@ -7,10 +7,21 @@ import { useWeb3Store } from '@/stores/web3'
 
 export default {
     computed: {
-        ...mapState(useWeb3Store, ['getProof'])
-    },
-    async created() {
-        await this.getWeb3Data()
+        ...mapState(useWeb3Store, ['getProof', 'collection']),
+        isPrivateSale() {
+            const {
+                private: { time: privateTime },
+                public: { time: publicTime }
+            } = web3Config.sale
+            return new Date() >= new Date(privateTime) && new Date() < new Date(publicTime)
+        },
+        isPublicSale() {
+            const { public: { time: publicTime } } = web3Config.sale
+            return new Date() >= new Date(publicTime)
+        },
+        isSoldOut() {
+            return this.collection.soldSupply >= web3Config.collection.maxSupply
+        }
     },
     methods: {
         ...mapActions(useWeb3Store, ['setWeb3Data', 'resetWeb3Data', 'setError', 'resetError']),
@@ -51,39 +62,56 @@ export default {
                 return Promise.reject(error)
             }
         
-            return Promise.resolve(provider)
+            return Promise.resolve({
+                provider,
+                ethersProvider: new ethers.providers.Web3Provider(provider)
+            })
         },
         async getWeb3Data() {
             try {
-                const provider = await this.checkConnection()
+                const { provider, ethersProvider } = await this.checkConnection()
                 const [account] = await provider.request({method: 'eth_requestAccounts'})
-                //const contract = new ethers.Contract(web3Config.contractAdress, Shinobi.abi, provider)
-                await this.setWeb3Data({ account })
+                const signer = ethersProvider.getSigner()
+                const contract = new ethers.Contract(web3Config.contractAdress, Shinobi.abi, signer)
+                await this.setWeb3Data({ account, contract })
             } catch (error) {
                 console.error(error)
                 this.setError(error.message)
             }
         },
         async mint(quantity) {
-            const provider = await this.checkConnection()
+            if (this.isSoldOut) return
+            const { provider, ethersProvider } = await this.checkConnection()
             const [account] = await provider.request({method: 'eth_requestAccounts'})
-            const signer = provider.getSigner();
+            const signer = ethersProvider.getSigner();
             const contract = new ethers.Contract(web3Config.contractAdress, Shinobi.abi, signer)
-            try {
-                const {
-                    private: { time: privateTime },
-                    public: { time: publicTime }
-                } = web3Config.sale
-                const isPrivate = new Date() >= new Date(privateTime) && new Date() < new Date(publicTime)
-        
+            try {        
                 let transaction
-                if (isPrivate) {
+                
+                if (this.isPrivateSale) {
+                    const cost = await contract.pricePresale()
+                    const overrides = { from: account, value: cost }
                     const proof = this.getProof(account)
-                    transaction = await contract.privateSaleMint(account, quantity, proof)
-                } else transaction = await contract.publicSaleMint(account, quantity)
-               
-                await transaction.wait()
-                await this.fetchData()
+                    transaction = await contract.privateSaleMint(account, quantity, proof, overrides)
+                } else {
+                    const priceSale = await contract.priceSale()
+                    const overrides = { from: account, value: priceSale }
+                    transaction = await contract.publicSaleMint(quantity, overrides)
+                }
+                
+                try {
+                    await transaction.wait()
+                } catch (error) {
+                    try {
+                        const utf8Reason = await ethersProvider.call(transaction, transaction.blockNumber)
+                        const errorMessage = ethers.utils.toUtf8String('0x' + utf8Reason.substr(138))
+                        this.setError(errorMessage)
+                        return
+                    } catch(error) {
+                        this.setError(error.message)
+                    }
+                }
+                await this.getWeb3Data()
             }
             catch(error) {
                 this.setError(error.message)

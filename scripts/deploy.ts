@@ -9,10 +9,12 @@ const { MerkleTree } = require("merkletreejs");
 const { keccak256 } = require("@ethersproject/keccak256");
 const fs = require('fs');
 
-const whitelist = require("../../src/configuration/Whitelist.json");
-const team = require("../../src/configuration/Team.json");
+const whitelist = require("../src/configuration/Whitelist.json");
+const team = require("../src/configuration/Team.json");
 
-const baseUrl = "ipfs://TEST"
+const baseUri = "ipfs://baseUri"
+const notRevealedURI = "ipfs://notRevealedURI"
+
 
 async function getMerkle(whitelist: Array<String>) {
   const leaves = whitelist.map(keccak256)
@@ -30,13 +32,12 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Shinobi = await hre.ethers.getContractFactory("ShinobiERC721A");
+  const Shinobi = await hre.ethers.getContractFactory("ShinobiERC721");
   const teamAdresses = team.map((member: any) => member.address)
-  const teamShares = team.map((member: any) => member.share)
   const root = getMerkle(whitelist.concat(teamAdresses))
-  const shinobi = await Shinobi.deploy(teamAdresses, teamShares, root, baseUrl);
+  const shinobi = await Shinobi.deploy(baseUri, notRevealedURI, root);
 
-  // await shinobi.deployed();
+  await shinobi.deployed();
 
   console.log("Shinobi deployed to:", shinobi.address);
 }

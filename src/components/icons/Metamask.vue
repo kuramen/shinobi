@@ -1,6 +1,6 @@
 <template lang="pug">
 .metamask(@mouseover="hasTails = true" @mouseleave="hasTails = false")
-    button.connect(v-if="user")
+    button.connected(v-if="user")
         span {{`Connected to ${this.user}`}}
     button.connect(v-else @click="getWeb3Data")
         svg(viewBox="0 0 540 330" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice")
@@ -65,6 +65,9 @@ export default {
     },
     computed: {
         ...mapState(useWeb3Store, ['user'])
+    },
+    async created() {
+        await this.getWeb3Data()
     }
 }
 </script>
@@ -73,7 +76,7 @@ export default {
 .metamask{
     height: 80px;
     background-color: $primary-color;
-    border-radius: 30px;
+    border-radius: 25px;
     border: 1px solid $primary-color;
     display: flex;
     cursor: pointer;
@@ -94,7 +97,24 @@ export default {
     button.connect {
         background-color: $background-color;
         color: $primary-color;
-        border-radius: 30px;
+
+        span {
+            margin: auto 10px auto auto;
+        }
+    }
+
+    button.connected {
+        background-color: $primary-color;
+        color: $background-color;
+
+        span {
+            margin: auto;
+        }
+    }
+
+    button.connect,
+    button.connected {
+        border-radius: 25px;
         border: 1px solid $primary-color;
         height: 100%;
         display: flex;
@@ -108,15 +128,17 @@ export default {
             font-family: "Roboto", sans-serif;
             font-size: 18px;
             font-weight: 600;
-            margin: auto 10px auto auto;
 
             @media (max-width:750px){
                 font-size: 14px;
+                max-width: 130px;
             }
 
         }
+    }
+    
 
-        svg {
+    button.connect svg {
             height: 100%;
             width: 80px;
             transform: translateY(-15px);
@@ -300,6 +322,5 @@ export default {
                 }
             }
         }
-    }
 }
 </style>
