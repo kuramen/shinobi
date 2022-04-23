@@ -5,23 +5,10 @@
 // Runtime Environment's members available in the global scope.
 Error.stackTraceLimit = Infinity;
 const hre = require("hardhat");
-const { MerkleTree } = require("merkletreejs");
-const { keccak256 } = require("@ethersproject/keccak256");
-const fs = require('fs');
+const web3Config = require("../src/configuration/Web3.json")
+const ShinobiERC721 = require("../src/configuration/ShinobiERC721.json")
 
-const whitelist = require("../src/configuration/Whitelist.json");
-const team = require("../src/configuration/Team.json");
-
-const baseUri = "https://shinobi-nft.mypinata.cloud/ipfs/QmWkWNscbMZDmzW5zS6WFDnJSfhHqYmUUazvyruz9sFDmF/"
 const notRevealedURI = "https://shinobi-nft.mypinata.cloud/ipfs/QmTad3JYrqb9G9RBad3smnRW44t33cZThCfEGbv3sQHtCR/hidden.json"
-
-
-async function getMerkle(whitelist: Array<String>) {
-  const leaves = whitelist.map(keccak256)
-  const tree = new MerkleTree(leaves, keccak256, { sort: true })
-  const root = tree.getHexRoot()
-  return root
-}
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -32,14 +19,9 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Shinobi = await hre.ethers.getContractFactory("ShinobiERC721");
-  const teamAdresses = team.map((member: any) => member.address)
-  const root = getMerkle(whitelist.concat(teamAdresses))
-  const shinobi = await Shinobi.deploy(baseUri, notRevealedURI, root);
-
-  await shinobi.deployed();
-
-  console.log("Shinobi deployed to:", shinobi.address);
+  const signer = await hre.ethers.getSigner();
+  const contract = new hre.ethers.Contract(web3Config.contractAdress, ShinobiERC721.abi, signer)
+  await contract.setNotRevealURI(notRevealedURI)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

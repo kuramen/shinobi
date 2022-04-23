@@ -23,7 +23,7 @@
         h3.success(v-if="isSuccessfullyMinted")
             | ✅ Transaction has been proceed successfully,
             br
-            | your Shinobi is waiting for in your wallet.
+            | your Shinobi is waiting for in your wallet. See it on TofuNFT !
         button.mint(@click="onMint" :disabled="isLoading || isSoldOut" :class="{ loading: isLoading }") 
             span(v-if="!isLoading") {{ mintLabel }}
             svg(v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.072 42.072" )
