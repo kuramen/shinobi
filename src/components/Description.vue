@@ -22,7 +22,8 @@ export default {
         socials: [
             { name: 'twitter' },
             { name: 'medium' },
-            { name: 'discord' }
+            { name: 'discord' },
+            { name: 'tofunft' }
         ],
         nfts: [...Array(20).keys()]
       }
