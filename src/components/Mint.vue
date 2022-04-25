@@ -5,7 +5,7 @@
         p {{ countdown }}
         h2.title Last chance for private mint
     .minter
-        p.supply {{ `${collection.soldSupply}/${maxSupply}` }}
+        p.supply {{ `${collection.soldSupply || '... '}/${maxSupply}` }}
         .quantity
             button.less(@click="removeQuantity") -
             p {{ quantity }}
