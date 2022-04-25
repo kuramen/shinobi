@@ -98,12 +98,12 @@ export default {
                 
                 if (this.isPrivateSale) {
                     const cost = await contract.privateSalePrice()
-                    const overrides = { from: account, value: cost }
+                    const overrides = { from: account, value: cost*quantity }
                     const proof = this.getProof(account)
                     transaction = await contract.privateSaleMint(account, quantity, proof, overrides)
                 } else {
-                    const priceSale = await contract.publicSalePrice()
-                    const overrides = { from: account, value: priceSale }
+                    const value = ethers.utils.parseEther(String(web3Config.sale.public.price*quantity))
+                    const overrides = { from: account, value }
                     transaction = await contract.publicSaleMint(quantity, overrides)
                 }
                 
