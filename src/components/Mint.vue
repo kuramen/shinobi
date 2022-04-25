@@ -1,9 +1,10 @@
 <template lang="pug">
 .mint
-    .countdown(v-if="!isPrivateSale && !isPublicSale && !isSoldOut")
-        h2.title Mint in
+    .countdown(v-if="!isPublicSale && !isSoldOut")
+        h2.title Public mint in
         p {{ countdown }}
-    .minter(v-else)
+        h2.title Last chance for private mint
+    .minter
         p.supply {{ `${collection.soldSupply}/${maxSupply}` }}
         .quantity
             button.less(@click="removeQuantity") -
@@ -61,7 +62,7 @@ export default {
         },
     },
     created() {
-        if (!this.isPrivateSale) {
+        if (!this.isPublicMint) {
             const x = setInterval(() => {
                 const distance = this.setCountDown()
                 if (distance < 0) clearInterval(x)
@@ -84,7 +85,7 @@ export default {
         },
         setCountDown() {
             const now = new Date().getTime();
-            const distance = web3Config.sale.private.time - now;
+            const distance = web3Config.sale.public.time - now;
 
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -117,6 +118,7 @@ export default {
             color: $secondary-color;
             font-size: 50px;
             font-weight: 600;
+            margin-bottom: 0px;
         }
 
         p { 
@@ -124,6 +126,8 @@ export default {
             color: $primary-color;
             font-size: 40px;
             font-weight: 200;
+            margin-top: 0;
+            margin-bottom: 50px;
         }
     }
 
