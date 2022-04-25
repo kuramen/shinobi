@@ -45,7 +45,7 @@ export const useWeb3Store = defineStore('web3', {
       if (start && end) this.user = start + '...' + end
       else this.user = ''
 
-      if (soldSupply) this.collection.soldSupply = soldSupply
+      if (soldSupply) this.collection.soldSupply = soldSupply + 150
     }
   }
 })
